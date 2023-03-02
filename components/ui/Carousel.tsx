@@ -73,6 +73,25 @@ function Carousel(
       aria-label="Gallery"
       data-carousel
     >
+      <>
+        {!!leftArrow && (
+          <span
+            class={`absolute ${arrowTopClass} left-0 ml-2 text-white outline-none p-2 z-10 pointer-events-none`}
+            data-carousel-prev
+          >
+            {leftArrow}
+          </span>
+        )}
+        {!!rightArrow && (
+          <span
+            class={`absolute ${arrowTopClass} right-0 mr-2 text-white outline-none p-2 z-10 pointer-events-none`}
+            data-carousel-next
+          >
+            {rightArrow}
+          </span>
+        )}
+      </>
+
       <ol
         class="absolute inset-0 flex scrollbar-none overflow-x-scroll scroll-smooth scroll-x-mandatory"
         data-carousel-viewport
@@ -90,7 +109,7 @@ function Carousel(
                   href={`#${generateSlideId(id, prev)}`}
                   data-carousel-prev
                 >
-                  {leftArrow}
+                  <div class="h-5 w-5" />
                 </a>
               )}
               {!!rightArrow && (
@@ -99,7 +118,7 @@ function Carousel(
                   href={`#${generateSlideId(id, next)}`}
                   data-carousel-next
                 >
-                  {rightArrow}
+                  <div class="h-5 w-5" />
                 </a>
               )}
             </>
@@ -111,6 +130,7 @@ function Carousel(
               style="flex: 0 0 100%"
               id={generateSlideId(id, index)}
               data-carousel-slide
+              tabIndex={0}
             >
               {child}
               <div
